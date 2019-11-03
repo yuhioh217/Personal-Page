@@ -1,12 +1,13 @@
 import React from "react";
 import { Modal, Grid, Image } from "semantic-ui-react";
 import firebase from "../../../firebase";
-
+import Carousel from "./Carousel";
 class SkillModal extends React.Component {
   state = {
     skillRef: firebase.database().ref("HomePage"),
     skillInfo: [],
-    skillLoading: false
+    skillLoading: false,
+    elements: []
   };
 
   componentDidMount() {
@@ -29,35 +30,7 @@ class SkillModal extends React.Component {
     skill &&
     this.state.skillInfo.map((s, index) =>
       s.title.toLowerCase() === skill.toLowerCase() ? (
-        <Grid
-          columns="equal"
-          stackable
-          style={{ fontSize: "1.33em" }}
-          key={index}
-        >
-          <Grid.Row textAlign="left">
-            <Grid.Column width={8}>
-              <span>
-                {s.info &&
-                  s.info
-                    .split(". ")
-                    .map((text, index) => <p key={index}>{text}</p>)}
-              </span>
-            </Grid.Column>
-            {s.profile &&
-              s.profile.map((src, index) => (
-                <Grid.Column key={index}>
-                  <Image
-                    src={src.image}
-                    floated="right"
-                    bordered
-                    rounded
-                    size="massive"
-                  />
-                </Grid.Column>
-              ))}
-          </Grid.Row>
-        </Grid>
+        <Carousel info={s.info} />
       ) : null
     );
 
