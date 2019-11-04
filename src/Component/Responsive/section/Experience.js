@@ -33,23 +33,23 @@ class Experience extends React.Component {
     return (
       experience.length > 0 &&
       experience.map((exp, index) => (
-        <Container key={index}>
-          <Header style={{ fontSize: "1.5em" }}>{`${exp.company},  ${
-            exp.country
-          }`}</Header>
-          <p>
-            <i
-              style={{
-                fontSize: "1em",
-                fontFamily: `"librebaskerville-regular", sans-serif`,
-                color: "#AAAAAA"
-              }}
-            >
-              {`${exp.title},  ${exp.startdate} - ${exp.enddate} (${
-                exp.identity
-              })`}
-            </i>
-          </p>
+        <Container key={index} style={{ marginBottom: "30px" }}>
+          <Header
+            style={{ fontSize: "1.5em" }}
+          >{`${exp.company},  ${exp.country}`}</Header>
+          {exp.title !== "" ? (
+            <p>
+              <i
+                style={{
+                  fontSize: "1em",
+                  fontFamily: `"librebaskerville-regular", sans-serif`,
+                  color: "#AAAAAA"
+                }}
+              >
+                {`${exp.title},  ${exp.startdate} - ${exp.enddate} (${exp.identity})`}
+              </i>
+            </p>
+          ) : null}
           {exp.content.length > 0 && (
             <List>{this.setWorkContent(exp.content)}</List>
           )}

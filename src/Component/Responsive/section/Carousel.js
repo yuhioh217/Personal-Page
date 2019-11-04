@@ -18,14 +18,9 @@ class Carousel extends React.Component {
     infoArray = info.map((i, index) => {
       return {
         render: () => (
-          <Grid
-            columns="equal"
-            stackable
-            style={{ fontSize: "1.33em" }}
-            key={index}
-          >
+          <Grid className="elemnets_grid" columns="equal" stackable key={index}>
             <Grid.Row textAlign="left">
-              <Grid.Column width={8}>
+              <Grid.Column width={8} style={{ paddingTop: "50px" }}>
                 <span>
                   {i.text &&
                     i.text
@@ -94,8 +89,9 @@ class Carousel extends React.Component {
             )}
           </Card.Content>
         </Card>
+
         {elements.length > 1 ? (
-          <div>
+          <div style={{ float: "right" }}>
             <Button
               basic
               inverted
